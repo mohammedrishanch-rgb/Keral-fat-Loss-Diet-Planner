@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fat Loss Diet Planner</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Live Clock -->
+    <div id="live-clock" class="live-clock"></div>
+
+    <div class="glass-container">
+        <header>
+            <h1>Fat Loss Diet <span>Planner</span></h1>
+            <p>Personalized Kerala-style meal plans tailored for your goals.</p>
+        </header>
+
+        <main>
+            <!-- FORM SECTION -->
+            <section id="form-section" class="active-section slide-in">
+                <form id="diet-form">
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" min="15" max="100" placeholder="e.g., 25" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" min="30" max="250" placeholder="e.g., 70" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" min="100" max="250" placeholder="e.g., 170" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="activity">Activity Level</label>
+                        <select id="activity" required>
+                            <option value="1.2">Sedentary (Little or no exercise)</option>
+                            <option value="1.375">Lightly active (Light exercise/sports 1-3 days/week)</option>
+                            <option value="1.55">Moderately active (Moderate exercise 3-5 days/week)</option>
+                            <option value="1.725">Very active (Hard exercise 6-7 days/week)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="food-pref">Food Preference</label>
+                        <select id="food-pref" required>
+                            <option value="veg">Vegetarian</option>
+                            <option value="non-veg">Non-Vegetarian</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="goal-speed">Goal Speed</label>
+                        <select id="goal-speed" required>
+                            <option value="slow">Slow & Steady (~0.25 kg loss/week)</option>
+                            <option value="medium" selected>Moderate (~0.5 kg loss/week)</option>
+                            <option value="fast">Fast (~0.75 kg loss/week)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Generate My Plan</button>
+                </form>
+            </section>
+
+            <!-- RESULT SECTION -->
+            <section id="result-section" class="hidden">
+                <div class="result-header">
+                    <h2>Your Personalized Plan</h2>
+                    <p id="generation-timestamp" style="color: var(--text-muted); font-size: 0.95rem; margin-top: -15px; margin-bottom: 30px;"></p>
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <span class="stat-icon">🔥</span>
+                            <div class="stat-info">
+                                <h3>Daily Calories</h3>
+                                <p id="calc-calories">1500 kcal</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">💧</span>
+                            <div class="stat-info">
+                                <h3>Water Intake</h3>
+                                <p id="calc-water">3.0 Liters</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⚖️</span>
+                            <div class="stat-info">
+                                <h3>Goal Speed</h3>
+                                <p id="calc-speed">Moderate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meal-plan-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <h3 style="margin: 0;">7-Day Kerala Meal Plan</h3>
+                        <button id="regenerate-plan-btn" class="btn-secondary" style="margin: 0; padding: 10px 15px; font-size: 0.9rem;">🔄 Generate Again</button>
+                    </div>
+                    <div id="meal-plan-grid" class="meal-plan-grid">
+                        <!-- Meal cards globally generated by JS -->
+                    </div>
+                </div>
+
+                <div class="grocery-list-container" id="grocery-list-container" style="display: none;">
+                    <h3>Weekly Grocery List</h3>
+                    <div id="grocery-list-grid" class="grocery-list-grid">
+                        <!-- Categories and items generated by JS -->
+                    </div>
+                </div>
+
+                <button id="reset-btn" class="btn-secondary">Generate Another Plan</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Created by Rishanch</p>
+    </footer>
+
+    <!-- Recipe Modal -->
+    <div id="recipe-modal" class="modal hidden">
+        <div class="modal-content glass-container">
+            <span class="close-modal" id="close-recipe-modal">&times;</span>
+            <h2 id="recipe-title">Cooking Instructions</h2>
+            <div id="recipe-instructions">
+                <!-- Instructions injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
